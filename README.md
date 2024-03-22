@@ -1,2 +1,3 @@
 # Rock-Paper-Scissors
-Basic rock-paper-Scissors game created with HTML and JavaScript
+
+Rudimentary rock-paper-scissors game created with HTML, JavaScript, and Regular Expressions, for the purpose of practicing JavaScript fundamentals.
