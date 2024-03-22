@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+  </head>
+  <body>
+    <script>
+      function getComputerChoice() {
+        const computerMoves = ["Rock", "Paper", "Scissors"];
+        return computerMoves[Math.floor(Math.random() * computerMoves.length)];
+      }
+
+      function gameRound(playerSelection, computerSelection) {
+        const sanitizedPlayerMove =
+          playerSelection.charAt(0).toUpperCase() +
+          playerSelection.substring(1).toLowerCase();
+
+        // ! Tie
+
+        if (sanitizedPlayerMove === computerMove) {
+          return `Tie!  ${sanitizedPlayerMove} equals ${computerMove}`;
+        }
+        if (sanitizedPlayerMove === "Rock" && computerMove === "Scissors") {
+          return `You Win! ${sanitizedPlayerMove} beats ${computerMove}`;
+        }
+        if (sanitizedPlayerMove === "Scissors" && computerMove === "Rock") {
+          return `You Lose! ${computerMove} beats ${sanitizedPlayerMove}`;
+        }
+        if (sanitizedPlayerMove === "Paper" && computerMove === "Rock") {
+          return `You win! ${sanitizedPlayerMove} beats ${computerMove}`;
+        }
+        if (sanitizedPlayerMove === "Rock" && computerMove === "Paper") {
+          return `You lose! ${computerMove} beats ${sanitizedPlayerMove}`;
+        }
+        if (sanitizedPlayerMove === "Paper" && computerMove === "Scissors") {
+          return `You lose! ${computerMove} beats ${sanitizedPlayerMove}`;
+        }
+        if (sanitizedPlayerMove === "Scissors" && computerMove === "Paper") {
+          return `You win! ${sanitizedPlayerMove} beats ${computerMove}`;
+        }
+      }
+      const playerSelection = "Scissors";
+      const computerMove = getComputerChoice();
+      console.log(gameRound(playerSelection, computerMove));
+    </script>
+  </body>
+</html>
