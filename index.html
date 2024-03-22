@@ -14,36 +14,77 @@
 
       function gameRound(playerSelection, computerSelection) {
         const sanitizedPlayerMove =
-          playerSelection.charAt(0).toUpperCase() +
+          playerSelection.at(0).toUpperCase() +
           playerSelection.substring(1).toLowerCase();
 
         // ! Tie
 
-        if (sanitizedPlayerMove === computerMove) {
-          return `Tie!  ${sanitizedPlayerMove} equals ${computerMove}`;
+        if (sanitizedPlayerMove === computerSelection) {
+          return `Tie!  ${sanitizedPlayerMove} equals ${computerSelection}`;
         }
-        if (sanitizedPlayerMove === "Rock" && computerMove === "Scissors") {
-          return `You Win! ${sanitizedPlayerMove} beats ${computerMove}`;
+        if (
+          sanitizedPlayerMove === "Rock" &&
+          computerSelection === "Scissors"
+        ) {
+          return `You win! ${sanitizedPlayerMove} beats ${computerSelection}`;
         }
-        if (sanitizedPlayerMove === "Scissors" && computerMove === "Rock") {
-          return `You Lose! ${computerMove} beats ${sanitizedPlayerMove}`;
+        if (
+          sanitizedPlayerMove === "Scissors" &&
+          computerSelection === "Rock"
+        ) {
+          return `You lose! ${computerSelection} beats ${sanitizedPlayerMove}`;
         }
-        if (sanitizedPlayerMove === "Paper" && computerMove === "Rock") {
-          return `You win! ${sanitizedPlayerMove} beats ${computerMove}`;
+        if (sanitizedPlayerMove === "Paper" && computerSelection === "Rock") {
+          return `You win! ${sanitizedPlayerMove} beats ${computerSelection}`;
         }
-        if (sanitizedPlayerMove === "Rock" && computerMove === "Paper") {
-          return `You lose! ${computerMove} beats ${sanitizedPlayerMove}`;
+        if (sanitizedPlayerMove === "Rock" && computerSelection === "Paper") {
+          return `You lose! ${computerSelection} beats ${computerSelection}`;
         }
-        if (sanitizedPlayerMove === "Paper" && computerMove === "Scissors") {
-          return `You lose! ${computerMove} beats ${sanitizedPlayerMove}`;
+        if (
+          sanitizedPlayerMove === "Paper" &&
+          computerSelection === "Scissors"
+        ) {
+          return `You lose! ${computerSelection} beats ${sanitizedPlayerMove}`;
         }
-        if (sanitizedPlayerMove === "Scissors" && computerMove === "Paper") {
-          return `You win! ${sanitizedPlayerMove} beats ${computerMove}`;
+        if (
+          sanitizedPlayerMove === "Scissors" &&
+          computerSelection === "Paper"
+        ) {
+          return `You win! ${sanitizedPlayerMove} beats ${computerSelection}`;
         }
       }
-      const playerSelection = "Scissors";
-      const computerMove = getComputerChoice();
-      console.log(gameRound(playerSelection, computerMove));
+      //   const playerSelection = "Scissors";
+      //   const computerMove = getComputerChoice();
+      //   console.log(gameRound(playerSelection, computerMove));
+      function playGame() {
+        let roundNumber = 0;
+        let winPattern = /win/;
+        let tiePattern = /Tie/;
+        let losePattern = /lose/;
+        let computerWins = 0;
+        let playerWins = 0;
+        let ties = 0;
+        while (roundNumber < 5) {
+          const playerSelection = prompt("Rock, Paper, or Scissors?");
+          const computerMove = getComputerChoice();
+          const gameResult = gameRound(playerSelection, computerMove);
+          if (winPattern.test(gameResult)) {
+            playerWins++;
+            console.log(gameResult);
+          } else if (tiePattern.test(gameResult)) {
+            ties++;
+            console.log(gameResult);
+          } else if (losePattern.test(gameResult)) {
+            computerWins++;
+            console.log(gameResult);
+          }
+          roundNumber++;
+        }
+        console.log(
+          `You won ${playerWins} times, you tied ${ties} times, and you lost ${computerWins} times.`
+        );
+      }
+      playGame();
     </script>
   </body>
 </html>
